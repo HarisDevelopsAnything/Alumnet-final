@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumnet - Register</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!--Google SUSE Font-->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&display=swap" rel="stylesheet">
+    <!--Google Chakra Petch-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=SUSE:wght@100..800&display=swap" rel="stylesheet">
+    <script src="index.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <style>
+        /* Custom styles */
+        body{
+            font-family: 'SUSE';
+        }
+        body.light-mode {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        body.dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        .sidebar {
+            height: 100vh;
+            width: 200px;
+            background-color: #f8f9fa;
+            padding-top: 20px;
+            position: fixed;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .sidebar.dark-mode {
+            background-color: #1e1e1e;
+        }
+        .form-control.dark-mode {
+            background-color: grey;
+            color: white;
+        }
+        .sidebar .nav-link {
+            font-weight: bold;
+            color: inherit;
+            margin-bottom: 10px;
+        }
+
+        .material-icon {
+            font-size: 24px;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+
+        .recent-connections img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+
+        .event-img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .forum-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .forum-card:hover {
+            background-color: #f0f0f0;
+        }
+
+        .dark-mode .forum-card {
+            border-color: #444;
+        }
+
+        .dark-mode .forum-card:hover {
+            background-color: #333;
+        }
+
+        .dark-mode .card {
+            background-color: #1e1e1e;
+            color: #e0e0e0;
+        }
+        #infoText {
+            font-family: 'Chakra Petch';
+        }
+        .toggle-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body class="light-mode d-flex" onload="catchyHeading()">
+
+
+
+<!-- Main Content -->
+
+<div class="container-fluid col-md-6 col-sm-8 col-12 row-12" style="margin:0%">
+    <div class="flex justify-content-left align-items-left mt-2">
+        <h1>Register to Alumnet</h1>
+        <p>We need some details we'll use to verify your identity.</p>
+        <button class="btn btn-dark rounded-pill" onclick="window.location.href='login.html'">I already have an account</button>
+    </div>
+
+    <h3 class="mt-2">Enter your details:</h3>
+    <form>
+        <div class="form-group">
+            <label for="inputFirstName">First name</label>
+            <input type="text" class="form-control w-50" id="inputFirstName" placeholder="First name">
+        </div>
+        <div class="form-group">
+            <label for="inputLastName">Last name</label>
+            <input type="text" class="form-control w-50" id="inputLastName" placeholder="Last name">
+        </div>
+        <div class="form-group">
+            <label for="inputBatch">Batch</label>
+            <input type="number" class="form-control w-50" id="inputPassword" placeholder="Batch">
+        </div>
+        <div class="form-group">
+          <label for="inputEmail">Email address</label>
+          <input type="email" class="form-control w-50" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email">
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+          <label for="inputPassword">Password</label>
+          <input type="password" class="form-control w-50" id="inputPassword" placeholder="Password">
+          <small id="emailHelp" class="form-text text-muted">Set a super-secure password.</small>
+        </div>
+        <div class="form-group">
+            <label for="inputPasswordAgain">Confirm Password</label>
+            <input type="password" class="form-control w-50" id="inputPasswordAgain" placeholder="Re-enter password">
+          </div>
+        <div class="form-group">
+            <label for="inputLIN">LinkedIn</label>
+            <input type="text" class="form-control w-50" id="inputLIN" placeholder="Your LinkedIn profile">
+        </div>
+        
+
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="latestUpdate">
+          <label class="form-check-label" for="mailCheck">Get notified on latest updates</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Sign up</button>
+      </form> 
+
+    
+</div>
+<div class="bg-success col-md-6 col-sm-4 col-0 container-fluid" style="position: relative; height: 100vh;">
+    <h1 id="infoText" class="text-light center mt-4">The platform where</h1>
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+    <dotlottie-player class="fixed-bottom" src="https://lottie.host/8102b619-9510-4bc2-b264-3a2ec381e7f1/uL6xnbJBCn.json" background="transparent" speed="1" style="width: 100%; height: fit-content; ; position: absolute;" loop autoplay></dotlottie-player>
+</div>
+
+<script>
+    // Dark Mode Toggle Function
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+        document.querySelector('.sidebar').classList.toggle('dark-mode');
+        document.querySelector('.form-control').classList.toggle('dark-mode');
+    }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

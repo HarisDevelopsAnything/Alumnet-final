@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumnet - Jobs</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <!--Google SUSE font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles */
+        body{
+            font-family: 'SUSE';
+            margin: 0%;
+            padding: 0%;
+        }
+        body.light-mode {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        body.dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        .sidebar {
+            height: 100vh;
+            width: 200px;
+            background-color: #f8f9fa;
+            padding-top: 20px;
+            position: fixed;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .sidebar.dark-mode {
+            background-color: #1e1e1e;
+        }
+
+        .sidebar .nav-link {
+            font-weight: bold;
+            color: inherit;
+            margin-bottom: 10px;
+        }
+
+        .material-icon {
+            font-size: 24px;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+
+        .recent-connections img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+
+        .event-img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .forum-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .forum-card:hover {
+            background-color: #f0f0f0;
+        }
+
+        .dark-mode .forum-card {
+            border-color: #444;
+        }
+
+        .dark-mode .forum-card:hover {
+            background-color: #333;
+        }
+
+        .dark-mode .card {
+            background-color: #1e1e1e;
+            color: #e0e0e0;
+        }
+
+        .toggle-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body class="light-mode">
+
+<!-- Dark Mode Toggle Button -->
+<button class="btn btn-danger toggle-button rounded-pill" onclick="toggleDarkMode()">
+    <span class="material-icons-outlined">brightness_6</span> Toggle Dark Mode
+</button>
+
+<!-- Sidebar -->
+<div class="sidebar bg-success d-flex flex-column margin-left m-0 fixed-top">
+    <a href="home.html" class="d-flex align-items-center mb-3 nav-link">
+        <span class="material-icons material-icon">home</span> Home
+    </a>
+    <a href="#" class="d-flex align-items-center mb-3 nav-link">
+        <span class="material-icons material-icon">article</span> Stories
+    </a>
+    <a href="#" class="d-flex align-items-center mb-3 nav-link">
+        <span class="material-icons material-icon">event</span> Events
+    </a>
+    <a href="#" class="d-flex align-items-center mb-3 nav-link bg-light p-2 rounded m-2" style="transition-duration: 0.5s;">
+        <span class="material-icons material-icon">work</span> Jobs
+    </a>
+    <a href="#" class="d-flex align-items-center mb-3 nav-link">
+        <span class="material-icons material-icon">group</span> Network
+    </a>
+    <a href="#" class="d-flex align-items-center mb-3 nav-link">
+        <span class="material-icons material-icon">volunteer_activism</span> Donation
+    </a>
+    <a href="login.html" onclick="alert('Logged out sucessfully!')" class="d-flex align-items-center mb-3 nav-link fixed-bottom">
+        <span class="material-icons material-icon">logout</span> Logout
+    </a>
+</div>
+
+<!-- Main Content -->
+<div class="container-fluid" style="margin-left: 220px;">
+    <div class="flex justify-content-between align-items-center mt-4">
+        <h1>Job portal</h1>
+        <h4>Every day is a new opportunity.</h4>
+    </div>
+    <h2>Listings</h2>
+    <ul id="job-list" class="job-listing">
+        <h1 class="text-danger">Error: Can't connect to server</h1>
+        <button class="btn btn-success" onclick="fetchJobs()">Reload</button>
+    </ul>
+
+    <script>
+        async function fetchJobs() {
+            try {
+                const response = await fetch('http://localhost:3000/jobs');
+                const jobs = await response.json();
+                const jobList = document.getElementById('job-list');
+                jobList.innerHTML = jobs.map(job => `
+                    <ul>
+                        <div class="card col-md-6 p-4" style="display: flex; flex-direction: row;">
+                            <div>    
+                                <h1 class="job-title">Role: ${job.title}</h1>
+                                <h3>Company: ${job.company}</h2>
+                                <h3>located at ${job.location}</h3>
+                                <h4>Average salary in LPA: ${job.salary}</h4>
+                            </div>
+                            <img src= ${job.logoUrl} style="height: 100px;">
+                        </div>
+                        <button class="btn btn-success">Apply for job</button>
+                        <button class="btn btn-primary">Know more</button>
+                    </ul>
+                    <br>
+                `).join('');
+            } catch (error) {
+                console.error('Error fetching jobs:', error);
+            }
+        }
+
+        // Fetch jobs when the page loads
+        window.onload = fetchJobs;
+    </script>
+</div>
+
+<script>
+    // Dark Mode Toggle Function
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+        document.querySelector('.sidebar').classList.toggle('dark-mode');
+    }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
