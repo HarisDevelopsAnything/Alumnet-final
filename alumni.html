@@ -3,40 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alumnet - Logged in as Student</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Alumnet - Logged in as Alumni</title>
+    <link href="./css/bootstrap.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
-    <!--Google SUSE font-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!--Google SUSE Font-->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&display=swap" rel="stylesheet">
+    <!--Google Chakra Petch-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=SUSE:wght@100..800&display=swap" rel="stylesheet">
+    <script src="index.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <style>
         /* Custom styles */
-        body{
+        body {
             font-family: 'SUSE';
-            margin: 0%;
-            padding: 0%;
         }
         body.light-mode {
             background-color: #f8f9fa;
             color: #333;
         }
-
         body.dark-mode {
             background-color: #121212;
             color: #e0e0e0;
         }
-
+        html{
+            background-color: #444 ;
+        }
+        .container{
+            background-image: url('alumni-bg2.jpg');
+            background-size:cover;
+        }
         .sidebar {
             height: 100vh;
             width: 200px;
-            background-color: #f8f9fa;
+            background-color: #198754;
             padding-top: 20px;
-            position: fixed;
+            position: fixed;z-index: 1;
             transition: background-color 0.3s, color 0.3s;
         }
-
+        .events{
+            background-color:rgb(248, 249, 250);
+        }
+        .card-body{
+            height: 136px;
+        }
         .sidebar.dark-mode {
             background-color: #1e1e1e;
         }
@@ -67,8 +80,10 @@
         }
 
         .forum-card {
+            background-color: white;
             border: 1px solid #ddd;
             padding: 15px;
+            margin-bottom: 5px;
             border-radius: 10px;
             text-align: center;
             cursor: pointer;
@@ -78,9 +93,17 @@
         .forum-card:hover {
             background-color: #f0f0f0;
         }
-
+        .dark-mode .events{
+            background-color: #1e1e1e;
+        }
+        .dark-mode .container{
+            background-color: #333;
+            background-image: url('alumni-bg.jpg');
+            background-size:cover;
+        }
         .dark-mode .forum-card {
             border-color: #444;
+            background-color:#1e1e1e;
         }
 
         .dark-mode .forum-card:hover {
@@ -91,7 +114,6 @@
             background-color: #1e1e1e;
             color: #e0e0e0;
         }
-
         .toggle-button {
             position: fixed;
             top: 20px;
@@ -103,66 +125,72 @@
 <body class="light-mode">
 
 <!-- Dark Mode Toggle Button -->
-<button class="btn btn-danger toggle-button rounded-pill" onclick="toggleDarkMode()">
+<button class="btn btn-secondary toggle-button" onclick="toggleDarkMode()">
     <span class="material-icons-outlined">brightness_6</span> Toggle Dark Mode
 </button>
 
 <!-- Sidebar -->
-<div class="sidebar bg-success d-flex flex-column margin-left m-0 fixed-top">
-    <a href="#" class="d-flex align-items-center mb-3 nav-link bg-light p-2 rounded m-2 text-primary">
+<div class="sidebar d-flex flex-column">
+    <a href="#" class="d-flex align-items-center mb-3 nav-link">
         <span class="material-icons material-icon">home</span> Home
     </a>
     <a href="#" class="d-flex align-items-center mb-3 nav-link">
-        <span class="material-icons material-icon">article</span> Stories
+        <span class="material-icons material-icon">article</span> Blog Vault
     </a>
-    <a href="events.html" class="d-flex align-items-center mb-3 nav-link">
+    <a href="#" class="d-flex align-items-center mb-3 nav-link">
         <span class="material-icons material-icon">event</span> Events
     </a>
-    <a href="jobs.html" class="d-flex align-items-center mb-3 nav-link">
-        <span class="material-icons material-icon">work</span> Jobs
+    <a href="#" class="d-flex align-items-center mb-3 nav-link">
+        <span class="material-icons material-icon">work</span> Job Portal
     </a>
     <a href="#" class="d-flex align-items-center mb-3 nav-link">
-        <span class="material-icons material-icon">group</span> Network
+        <span class="material-icons material-icon">group</span> Alumni Connect
     </a>
     <a href="#" class="d-flex align-items-center mb-3 nav-link">
-        <span class="material-icons material-icon">volunteer_activism</span> Donation
+        <span class="material-icons material-icon">volunteer_activism</span> Donations
     </a>
-    <a href="public.html" onclick="alert('Logged out sucessfully!')" class="d-flex align-items-center mb-3 nav-link fixed-bottom">
+    <a href="login.html" onclick="alert('Logged out sucessfully!')" class="d-flex align-items-center mb-3 nav-link fixed-bottom">
         <span class="material-icons material-icon">logout</span> Logout
     </a>
 </div>
 
 <!-- Main Content -->
-<div class="container-fluid" style="margin-left: 220px;">
-    <div class="flex justify-content-between align-items-center mt-4">
-        <h1>Welcome back, Haris!</h1>
-        <p>We have been missing you.</p>
+<div class="container" style="margin-left: 200px; margin-right: 0px; overflow-x: hidden;">
+    <div class="d-flex justify-content-between align-items-center mt-4">
+        <h1>Welcome Haris!<h1>
     </div>
-    <h1>Recent connections</h1>
-    <div class="d-flex justify-content-start mt-3 recent-connections">
-        <div class="card align-items-center rounded p-4 btn col-md-2">    
-            <img src="images/profile.jpg" alt="No internet">
-            <p>C Jonathan</p>
+    <h3 class="mt-5 text-center border mb-0 w-50 events rounded-top">Events</h3>
+    <div class="col border w-50 events rounded-bottom">
+        <div class="row align-items-center">
+            <div class="col-sm text-center">
+                <h5>Sep</h5>
+                <h1>05</h1>
+            </div>
+            <div class="col-sm pt-4">
+                <div><p><b>Lecture  on IOT by Prof Raja from IIT </b></p></div>
+                <div><p><span class="material-icons">calendar_month</span>September 5, 12:00pm IST</p></div>
+                <div><p><span class="material-icons">place</span>MSEC</p></div>
+            </div>
         </div>
-        <div class="card align-items-center rounded p-4 btn col-md-2">    
-            <img src="images/profile.jpg" alt="No internet">
-            <p>N Akilan</p>
+        <hr>
+        <div class="row align-items-center">
+            <div class="col-sm text-center">
+                <h5>Oct</h5>
+                <h1>10</h1>
+            </div>
+            <div class="col-sm pt-4">
+                <div><p><b>Fiesta for Seniors(III & IV years) </b></p></div>
+                <div><p><span class="material-icons">calendar_month</span>October 10, 9:00am - 4:00pm IST</p></div>
+                <div><p><span class="material-icons">place</span>MSEC</p></div>
+            </div>
         </div>
-        <div class="card align-items-center rounded p-4 btn col-md-2">    
-            <img src="images/profile.jpg" alt="No internet">
-            <p>P V Pothiraju</p>
-        </div>
-        <div class="card align-items-center rounded p-4 btn col-md-2">    
-            <img src="images/profile.jpg" alt="No internet">
-            <p>M Santhosh Krishnan</p>
-        </div>
+        <hr class="mb-0">
     </div>
-
-    <h3 class="mt-5">Latest events</h3>
+    <h3 class="mt-5 text-center border rounded w-25 events">Top Stories</h3>
     <div class="row">
         <div class="col-md-3">
-            <div class="card mb-4 rounded">
-                <img src="event1.jpg" class="card-img-top event-img" alt="Event 1">
+            <div class="card mb-4">
+                <img src="story-bg.jpg" class="card-img-top event-img" alt="pic 1">
                 <div class="card-body">
                     <h5 class="card-title">IV year AI&DS student receives a prize of Rs. 1 lakh</h5>
                     <p class="card-text">20th August, 2024</p>
@@ -171,17 +199,17 @@
         </div>
         <div class="col-md-3">
             <div class="card mb-4">
-                <img src="event2.jpg" class="card-img-top event-img" alt="Event 2">
+                <img src="story-bg.jpg" class="card-img-top event-img" alt="pic 2">
                 <div class="card-body">
-                    <h5 class="card-title">2024 Scholarship Awards</h5>
-                    <p class="card-text">13th April, 2024</p>
+                    <h5 class="card-title">Winners of SIH 2023</h5>
+                    <p class="card-text">13th October, 2023</p>
                 </div>
             </div>
         </div>
     </div>
 
     <h3>Forums</h3>
-    <div class="row">
+    <div class="row d-flex justify-content-around">
         <div class="col-md-2">
             <div class="forum-card">
                 <span class="material-icons-outlined">work_outline</span>

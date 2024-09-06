@@ -1,6 +1,6 @@
-const express = require('express');
-const { MongoClient } = require('mongodb');
-const cors = require('cors');
+const express = require('express'); //helps to manage servers and routes
+const { MongoClient } = require('mongodb'); //official mongodb client for database connection
+const cors = require('cors'); //safe database access
 
 const app = express();
 app.use(cors());
